@@ -16,11 +16,11 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Build project
-        run: make clean && make
+      - name: Build KoboRoot.tgz
+        run: make clean && make koboroot
 
-      - name: Archive final KoboRoot
+      - name: Upload KoboRoot.tgz
         uses: actions/upload-artifact@v3
         with:
           name: KoboRoot-NickelMenu
-          path: KoboRoot-NickelMenu.tar.xz
+          path: KoboRoot.tgz
