@@ -1,20 +1,26 @@
 name: Build
-on: [push, pull_request]
+
+on:
+  push:
+    branches: [master]
 
 jobs:
   build:
-    name: NickelMenu
+    name: Build NickelMenu
     runs-on: ubuntu-latest
     container: ghcr.io/pgaskin/nickeltc:1.0
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        submodules: true
-    - name: Build
-      run: make all koboroot
-    - name: Upload
-      uses: actions/upload-artifact@v4
-      with:
-        name: ExtraMenu
-        path: KoboRoot.tgz
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Build project
+        run: make clean && make
+
+      - name: Archive final KoboRoot
+        uses: actions/upload-artifact@v3
+        with:
+          name: KoboRoot-NickelMenu
+          path: KoboRoot-NickelMenu.tar.xz
