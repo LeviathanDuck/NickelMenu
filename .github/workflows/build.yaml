@@ -16,5 +16,5 @@ jobs:
     - name: Upload
       uses: actions/upload-artifact@v4
       with:
-        name: NickelMenu
+        name: ExtraMenu
         path: KoboRoot.tgz
